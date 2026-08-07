@@ -1,1 +1,1 @@
-# PEViT
+# PeViT (Periodic-eeg Vision Transformer)
