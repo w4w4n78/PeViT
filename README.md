@@ -15,11 +15,22 @@ Official PyTorch implementation of the scientific manuscript entitled "Periodic 
 
 ---
 
-## Abstract
+## Dataset
 
-Recognizing emotions from electroencephalogram (EEG) signals is vital for applications ranging from clinical diagnostics to human-computer interaction. Despite extensive research, current methods often rely on expensive handcrafted features or computationally intensive signal-domain transformations that struggle with the inherent noise and non-stationarity of EEG data. Furthermore, achieving high accuracy on limited datasets remains a challenge due to the overfitting tendencies of deep learning models. 
+<!-- ## Abstract -->
 
-To address these issues, we propose **PeViT**, an efficient and effective model designed for raw EEG-based emotion recognition. We introduce a **Periodic Shifted Patch (PSP)** mechanism that provides on-the-fly data augmentation while preserving critical spatio-temporal relationships without the need for prior signal processing. This is integrated with a modified Vision Transformer architecture tailored to capture global contextual relations and long-term dependencies in EEG signals. We validated PeViT on four datasets, including the recent and large-scale **HBUED** (50 participants), alongside **DEAP**, **DREAMER**, and **SEED**. The results demonstrate that PeViT scales effectively to larger cohorts, achieving over **90% accuracy on HBUED** while maintaining state-of-the-art performance and a **30% speedup** on established benchmarks with the lowest parameter count among compared models.
+<!-- Recognizing emotions from electroencephalogram (EEG) signals is vital for applications ranging from clinical diagnostics to human-computer interaction. Despite extensive research, current methods often rely on expensive handcrafted features or computationally intensive signal-domain transformations that struggle with the inherent noise and non-stationarity of EEG data. Furthermore, achieving high accuracy on limited datasets remains a challenge due to the overfitting tendencies of deep learning models.  -->
+
+<!-- To address these issues, we propose **PeViT**, an efficient and effective model designed for raw EEG-based emotion recognition. We introduce a **Periodic Shifted Patch (PSP)** mechanism that provides on-the-fly data augmentation while preserving critical spatio-temporal relationships without the need for prior signal processing. This is integrated with a modified Vision Transformer architecture tailored to capture global contextual relations and long-term dependencies in EEG signals. We validated PeViT on four datasets, including the recent and large-scale **HBUED** (50 participants), alongside **DEAP**, **DREAMER**, and **SEED**. The results demonstrate that PeViT scales effectively to larger cohorts, achieving over **90% accuracy on HBUED** while maintaining state-of-the-art performance and a **30% speedup** on established benchmarks with the lowest parameter count among compared models. -->
+
+We validated our study on four datasets, including the recent and large-scale **HBUED** (50 participants), alongside **DEAP**, **DREAMER**, and **SEED**. Each dataset is widely available through their official channel, however, they are behind a license agreement that users need to sign and agree to the terms and conditions before accessing the dataset. 
+
+- HBUED: https://github.com/tensorground/HBUED.github.io 
+- DEAP: https://www.eecs.qmul.ac.uk/mmv/datasets/deap/download.html
+- DREAMER: https://zenodo.org/records/546113
+- SEED: https://bcmi.sjtu.edu.cn/home/seed/index.html 
+
+The preprocessing for the later 3 datasets are provided by TorchEEG, and can be use right away. However, the preprocessing for HBUED dataset is not provided by TorchEEG, and need to be preprocessed manually. In this repository, we have provided the preprocessing script alongside our propose method for the HBUED dataset.
 
 ---
 
