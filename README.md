@@ -1,21 +1,21 @@
-# Periodic Shifted Patch on Vision Transformer for Electroencephalogram Signal-Based Emotion Recognition (PeViT)
+# Periodic Shifted Patch on Vision Transformer for Electroencephalogram Signal-Based Emotion Recognition
 
-[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
-[![PyTorch 2.2+](https://img.shields.io/badge/pytorch-2.2+-ee4c2c.svg)](https://pytorch.org/)
+[![Python 3.10.20](https://img.shields.io/badge/python-3.10.x-blue.svg)](https://www.python.org/downloads/)
+[![PyTorch 2.7.x](https://img.shields.io/badge/pytorch-2.7.x-ee4c2c.svg)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Official PyTorch implementation of **PeViT** from the scientific manuscript submitted to *Biomedical Signal Processing and Control*.
+Official PyTorch implementation of the scientific manuscript entitled "Periodic Shifted Patch on Vision Transformer for Electroencephalogram Signal-Based Emotion Recognition" submitted to *Biomedical Signal Processing and Control*.
 
-> **Periodic Shifted Patch on Vision Transformer for Electroencephalogram Signal-Based Emotion Recognition**  
+<!-- > **Periodic Shifted Patch on Vision Transformer for Electroencephalogram Signal-Based Emotion Recognition**  
 > Wawan Yunanto<sup>a</sup>, Hsing-Kuo Pao<sup>a,*</sup>, Adhi Dharma Wibawa<sup>b</sup>, Yennun Huang<sup>c</sup>, and Mohammad Iqbal<sup>b</sup>  
 > <sup>a</sup> *National Taiwan University of Science and Technology, Taipei City, Taiwan*  
 > <sup>b</sup> *Institut Teknologi Sepuluh Nopember, Surabaya, Indonesia*  
 > <sup>c</sup> *Academia Sinica, Taipei City, Taiwan*  
-> <sup>*</sup> Corresponding author: `pao@mail.ntust.edu.tw`
+> <sup>*</sup> Corresponding author: `pao@mail.ntust.edu.tw` -->
 
 ---
 
-## 📌 Abstract
+## Abstract
 
 Recognizing emotions from electroencephalogram (EEG) signals is vital for applications ranging from clinical diagnostics to human-computer interaction. Despite extensive research, current methods often rely on expensive handcrafted features or computationally intensive signal-domain transformations that struggle with the inherent noise and non-stationarity of EEG data. Furthermore, achieving high accuracy on limited datasets remains a challenge due to the overfitting tendencies of deep learning models. 
 
@@ -23,7 +23,7 @@ To address these issues, we propose **PeViT**, an efficient and effective model 
 
 ---
 
-## 🏗️ Architecture Overview
+<!-- ## Architecture Overview
 
 ```
                       ┌──────────────────────────────────────┐
@@ -58,11 +58,11 @@ To address these issues, we propose **PeViT**, an efficient and effective model 
 ### Key Contributions
 1. **Periodic Shifted Patch (PSP) Mechanism**: Lightweight, on-the-fly EEG data augmentation using overlapping temporal shifted windows that inherently preserves cortical spatio-temporal relationships and addresses EEG signal non-stationarity.
 2. **Raw Time-Domain Processing**: Eliminates the need for expensive frequency-domain transformations (FFT/STFT), graph construction (GNNs), or spatial projections—achieving a **30% speedup** and state-of-the-art parameter efficiency.
-3. **Cross-Subject Robustness**: Rigorous 60:20:20 subject-independent holdout evaluation across 4 benchmark datasets (DEAP, DREAMER, SEED, and HBUED).
+3. **Cross-Subject Robustness**: Rigorous 60:20:20 subject-independent holdout evaluation across 4 benchmark datasets (DEAP, DREAMER, SEED, and HBUED). -->
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 PeViT/
@@ -92,7 +92,7 @@ PeViT/
 └── requirements.txt         # Project dependencies
 ```
 
----
+<!-- ---
 
 ## ⚙️ Hyperparameters
 
@@ -153,9 +153,9 @@ Summarized hyperparameter settings across the four evaluated datasets (from Manu
 | Ramzan et al. [24] | 2,850,841 | - | 2,850,841 |
 | **PeViT (Ours)** | **356,066** | **251,906** | **1,995,267** |
 
----
+--- -->
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
 
@@ -195,7 +195,7 @@ python scripts/evaluate.py --checkpoint pevit_checkpoint.pth --dataset DEAP
 
 ---
 
-## 📜 Citation
+## Citation
 
 If you find PeViT useful in your research, please cite our paper:
 
@@ -211,6 +211,6 @@ If you find PeViT useful in your research, please cite our paper:
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
