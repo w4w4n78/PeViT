@@ -1,3 +1,4 @@
+python>=3.10.20
 torch>=2.7.1
 numpy>=1.26.4
 scikit-learn>=1.7.2
