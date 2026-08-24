@@ -11,14 +11,14 @@ class HBUEDDataset:
                  offline_transform=None,
                  online_transform=None,
                  label_transform=None,
-                 chunk_size=200,
-                 overlap=180,
+                #  chunk_size=200,
+                #  overlap=180,
                  io_size: int = 10485760,
                  io_mode: str = 'lmdb'):
 
         self.root_path = root_path
-        self.chunk_size = chunk_size
-        self.overlap = overlap
+        # self.chunk_size = chunk_size
+        # self.overlap = overlap
 
         self.offline_transform = offline_transform
         self.online_transform = online_transform
@@ -42,7 +42,7 @@ class HBUEDDataset:
         self.keys = list(self.eeg_io.keys())
 
     def _generate_database(self):
-        step = self.chunk_size - self.overlap
+        # step = self.chunk_size - self.overlap
         files = sorted(glob.glob(os.path.join(self.root_path, "*.mat")))
 
         for file in files:
@@ -67,14 +67,20 @@ class HBUEDDataset:
                 if self.offline_transform is not None:
                     eeg_trial = self.offline_transform(eeg=eeg_trial)['eeg']
 
-                for start in range(0, eeg_trial.shape[1] - self.chunk_size + 1, step):
-                    chunk = eeg_trial[:, start:start + self.chunk_size]
-                    key = f"{subject_id}_trial{trial_id}_start{start}"
+                # for start in range(0, eeg_trial.shape[1] - self.chunk_size + 1, step):
+                #     chunk = eeg_trial[:, start:start + self.chunk_size]
+                #     key = f"{subject_id}_trial{trial_id}_start{start}"
 
-                    info["key"] = key
+                #     info["key"] = key
 
-                    self.eeg_io.write_eeg(eeg=chunk, key=key)
-                    self.info_io.write_info(info)
+                #     self.eeg_io.write_eeg(eeg=chunk, key=key)
+                #     self.info_io.write_info(info)
+
+                key = f"{subject_id}_trial{trial_id}"
+                info["key"] = key
+
+                self.eeg_io.write_eeg(eeg=eeg_trial, key=key)
+                self.info_io.write_info(info)
 
     def __len__(self):
         return len(self.keys)
