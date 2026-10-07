@@ -19,6 +19,8 @@ class HBUEDDatasetLegacy:
         self.root_path = root_path
         self.chunk_size = chunk_size
         self.overlap = overlap
+        if chunk_size <= 0 or not 0 <= overlap < chunk_size:
+            raise ValueError("Require chunk_size > 0 and 0 <= overlap < chunk_size.")
 
         self.offline_transform = offline_transform
         self.online_transform = online_transform
@@ -40,6 +42,15 @@ class HBUEDDatasetLegacy:
             self._generate_database()
 
         self.keys = list(self.eeg_io.keys())
+        info = self.info_io.read_all()
+        if not self.keys:
+            raise ValueError(f"No EEG windows found in {root_path}.")
+        if ("key" not in info or info["key"].duplicated().any()
+                or set(info["key"]) != set(self.keys)):
+            raise ValueError(
+                f"Invalid cache metadata in {io_path}. Rebuild using a new io_path."
+            )
+        self.info = info.set_index("key", drop=False)
 
     def _generate_database(self):
         step = self.chunk_size - self.overlap
@@ -76,12 +87,6 @@ class HBUEDDatasetLegacy:
                     self.eeg_io.write_eeg(eeg=chunk, key=key)
                     self.info_io.write_info(info)
 
-                # key = f"{subject_id}_trial{trial_id}"
-                # info["key"] = key
-
-                self.eeg_io.write_eeg(eeg=eeg_trial, key=key)
-                self.info_io.write_info(info)
-
     def __len__(self):
         return len(self.keys)
 
@@ -89,12 +94,12 @@ class HBUEDDatasetLegacy:
         key = self.keys[index]
 
         eeg = self.eeg_io.read_eeg(key)
-
-        # IMPORTANT: meta info is indexed by integer, not key
-        info = self.info_io.read_info(index)
-
-        # convert pandas Series to dict
-        info = dict(info)
+        if eeg.ndim != 2 or eeg.shape[1] != self.chunk_size:
+            raise ValueError(
+                f"Invalid cached window {key}: shape {eeg.shape}; expected "
+                f"(channels, {self.chunk_size}). Rebuild using a new io_path."
+            )
+        info = self.info.loc[key].to_dict()
 
         if self.online_transform is not None:
             eeg = self.online_transform(eeg=eeg)['eeg']
